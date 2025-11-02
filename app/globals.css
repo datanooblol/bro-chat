@@ -1,7 +1,27 @@
+/* app/globals.css */
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  /* Light mode colors */
+  --color-bg-primary: 255 255 255;      /* white */
+  --color-bg-secondary: 249 250 251;    /* gray-50 */
+  --color-text-primary: 17 24 39;       /* gray-900 */
+  --color-text-secondary: 107 114 128;  /* gray-500 */
+  --color-border-primary: 229 231 235;  /* gray-200 */
+}
+
+.dark {
+  /* Dark mode colors */
+  --color-bg-primary: 17 24 39;         /* gray-900 */
+  --color-bg-secondary: 31 41 55;       /* gray-800 */
+  --color-text-primary: 249 250 251;    /* gray-50 */
+  --color-text-secondary: 156 163 175;  /* gray-400 */
+  --color-border-primary: 75 85 99;     /* gray-600 */
 }
