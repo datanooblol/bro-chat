@@ -12,40 +12,45 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
+  const [copiedBlocks, setCopiedBlocks] = useState<Record<string, boolean>>({})
+
+  const handleCopy = (code: string, blockId: string) => {
+    navigator.clipboard.writeText(code)
+    setCopiedBlocks(prev => ({ ...prev, [blockId]: true }))
+    setTimeout(() => {
+      setCopiedBlocks(prev => ({ ...prev, [blockId]: false }))
+    }, 2000)
+  }
+
   return (
     <div className="prose prose-sm max-w-none">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{
-        code({ node, inline, className, children, ...props }) {
+        code({ className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
-          const [copied, setCopied] = useState(false)
+          const codeContent = String(children).replace(/\n$/, '')
+          const blockId = `${match?.[1] || 'code'}-${codeContent.slice(0, 20)}`
+          const isCopied = copiedBlocks[blockId] || false
           
-          const handleCopy = () => {
-            navigator.clipboard.writeText(String(children).replace(/\n$/, ''))
-            setCopied(true)
-            setTimeout(() => setCopied(false), 2000)
-          }
-          
-          return !inline && match ? (
+          return match ? (
             <div className="rounded-md overflow-hidden border border-gray-200">
               <SyntaxHighlighter
                 style={tomorrow}
                 language={match[1]}
                 PreTag="div"
                 className="!m-0 !rounded-none"
-                {...props}
               >
-                {String(children).replace(/\n$/, '')}
+                {codeContent}
               </SyntaxHighlighter>
               <div className="flex justify-between items-center bg-gray-100 px-3 py-2 border-t border-gray-200">
                 <span className="text-xs font-medium text-gray-600">{match[1]}</span>
                 <button
-                  onClick={handleCopy}
+                  onClick={() => handleCopy(codeContent, blockId)}
                   className="text-xs text-gray-600 hover:text-gray-800 font-medium"
                 >
-                  {copied ? 'Copied!' : 'Copy'}
+                  {isCopied ? 'Copied!' : 'Copy'}
                 </button>
               </div>
             </div>
@@ -57,7 +62,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         },
         h1: ({ children }) => <h1 className="text-lg font-bold mb-1">{children}</h1>,
         h2: ({ children }) => <h2 className="text-base font-semibold mb-1">{children}</h2>,
-        h3: ({ children }) => <h3 className="text-sm font-medium mb-0.5">{children}</h3>,
+        h3: ({ children }) => <h3 className="text-base font-semibold mb-1">{children}</h3>,
         p: ({ children }) => <p className="mb-1.5">{children}</p>,
         ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
         ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,

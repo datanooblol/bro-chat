@@ -50,6 +50,9 @@ export function ChatContainer({
         [...chatHistory, { role: 'user', content: message }]
       )
 
+      console.log('LLM Response Content:', response.content)
+      console.log('LLM Response Content (raw):', JSON.stringify(response.content))
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         message: response.content,
