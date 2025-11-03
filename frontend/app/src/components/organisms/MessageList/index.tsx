@@ -14,6 +14,7 @@ interface Message {
 interface MessageListProps {
   messages: Message[]
   isTyping?: boolean
+  onClear?: () => void
 }
 
 export function MessageList({ messages, isTyping = false }: MessageListProps) {
