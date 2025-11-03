@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///Users/pathompolnilchaikovit/Desktop/projects/bro-chat/app/page.tsx"],"sourcesContent":["export default function Home() {\n  return (\n    <div className=\"flex h-screen bg-gray-900 items-center justify-center\">\n      <div className=\"m-8 bg-red-500 w-32 h-32 p-4\">\n        <div className=\"bg-blue-500 w-full h-full flex items-center justify-center text-white\">\n          Inner\n        </div>\n      </div>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;sBACb,cAAA,8OAAC;gBAAI,WAAU;0BAAwE;;;;;;;;;;;;;;;;AAM/F","debugId":null}}]
-}
