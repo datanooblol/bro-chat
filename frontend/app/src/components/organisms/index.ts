@@ -1,2 +1,7 @@
 export { MessageList } from './MessageList'
 export { ChatContainer } from './ChatContainer'
+export { LoginContainer } from './LoginContainer'
+export { ProjectGrid } from './ProjectGrid'
+export { DashboardHeader } from './DashboardHeader'
+export { Navbar } from './Navbar'
+export { PageHeader } from './PageHeader'

@@ -3,13 +3,15 @@ interface TextProps {
   size?: 'sm' | 'md' | 'lg'
   weight?: 'normal' | 'medium' | 'bold'
   color?: 'primary' | 'secondary' | 'muted'
+  className?: string
 }
 
 export function Text({ 
   children, 
   size = 'md', 
   weight = 'normal',
-  color = 'primary' 
+  color = 'primary',
+  className = ''
 }: TextProps) {
   const sizes = {
     sm: 'text-sm',
@@ -30,7 +32,7 @@ export function Text({
   }
 
   return (
-    <span className={`${sizes[size]} ${weights[weight]} ${colors[color]}`}>
+    <span className={`${sizes[size]} ${weights[weight]} ${colors[color]} ${className}`}>
       {children}
     </span>
   )

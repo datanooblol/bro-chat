@@ -42,7 +42,6 @@ export function MessageBubble({
         </Text>
       </div>
       <div className="flex gap-3">
-        <Avatar src={avatar} alt={sender} size="sm" />
         <div className="flex-1 px-4 py-3 rounded-lg bg-white">
           {isMarkdown ? (
             <MarkdownRenderer content={message} />
