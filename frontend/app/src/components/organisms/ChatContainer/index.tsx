@@ -78,7 +78,10 @@ export function ChatContainer({
   return (
     <div className="flex flex-col h-full bg-white">
       <div className="flex justify-end p-2">
-        <button onClick={clearMessages} className="text-sm text-gray-500">
+        <button
+          onClick={clearMessages}
+          className="text-sm text-gray-500 hover:bg-gray-200 px-4 py-0 rounded-sm"
+        >
           Clear History
         </button>
       </div>
